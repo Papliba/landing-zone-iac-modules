@@ -1,0 +1,21 @@
+name: CI Workflow # The name of the workflow
+run-name: CI Run # The name of the specific run
+
+# Triggers
+on: # The events that trigger the workflow
+  push: # Trigger the workflow on push events
+    branches: 
+      - main # Only trigger on pushes to the main branch
+  pull_request: # Trigger the workflow on pull request events
+    branches:
+      - main # Only trigger on pull requests to the main branch
+
+# Jons
+jobs: # The jobs that will run as part of the workflow
+ build: # The name of the job
+   runs-on: ubuntu-latest # The type of runner to use
+   steps:
+     - run: echo "Github object ${{ toJson(github) }}" # Step to print the github object
+     - run: echo "Runner object ${{ toJson(runner) }}" # Step to print the runner object
+     - run: echo "Job Object ${{ toJson(job) }}." # Step to print the job object
+     - uses: actions/checkout@v4 # Use the checkout action 
