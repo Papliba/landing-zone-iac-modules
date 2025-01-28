@@ -15,7 +15,17 @@ jobs: # The jobs that will run as part of the workflow
  build: # The name of the job
    runs-on: ubuntu-latest # The type of runner to use
    steps:
+
+     # Use the checkout action 
+     - uses: actions/checkout@v4 
+      
+     # Access env secrets
+     - name: Receive secret # Name of the step
+       env: # Environment variables
+         SECRET: ${{ secrets.SUPERSECRET }} # The secret to use
+       run: echo "The secret is ${{ secrets.SECRET }}" # Step to print the secret
+
+     # Access context
      - run: echo "Github object ${{ toJson(github) }}" # Step to print the github object
      - run: echo "Runner object ${{ toJson(runner) }}" # Step to print the runner object
      - run: echo "Job Object ${{ toJson(job) }}." # Step to print the job object
-     - uses: actions/checkout@v4 # Use the checkout action 
