@@ -1,0 +1,42 @@
+name: testing
+run-name: run-testing
+on: 
+  push: 
+    branches: 
+      - main
+    #you cannot use branches and branches-ignore to filter the same event use ! instead
+    # - '!feature/experimental/**'
+    # branches-ignore: 
+    #   - feature/experimental/**
+    paths: 
+      - 'src/**'
+      - '!src/experimental/**'
+    paths-ignore: 
+      - 'src/experimental/**'
+    tags: 
+      - v1
+    tags-ignore: 
+      - v2
+  pull_request: 
+    branches: 
+      - main
+  label: 
+    types: 
+      - created
+      - deleted
+      - updated
+  issue_comment: 
+    types: 
+      - created
+
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+  testing: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: step-testing
+        run: echo 'testing'

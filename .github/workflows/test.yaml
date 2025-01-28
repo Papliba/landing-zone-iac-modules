@@ -1,0 +1,17 @@
+name: robot-framework-ci
+run-name: run-robot-framework-ci
+on: 
+  push: 
+    branches: 
+      - main
+jobs: 
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Checkout code
+        uses: actions/checkout@v2
+  robot-framework-ci: 
+    runs-on: ubuntu-latest
+    steps: 
+      - name: step-robot-framework-ci
+        run: echo 'robot-framework-ci'
