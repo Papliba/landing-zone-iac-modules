@@ -7,12 +7,26 @@ on: # The events that trigger the workflow
     branches: 
       - main # Only trigger on pushes to the main branch
       - feature/* # Trigger on pushes to any feature branch
+    branches-ignore:
+      - feature/experimental # Ignore pushes to the experimental feature branch
+    paths:
+      - 'src/**' # Only trigger on pushes to files in the src directory
+      - '!src/experimental/**' # Ignore pushes to files in the experimental directory
+    paths-ignore:
+      - 'src/experimental/**' # Ignore pushes to files in the experimental directory
   pull_request: # Trigger the workflow on pull request events
     branches:
       - main # Only trigger on pull requests to the main branch
+  lable: # Trigger the workflow on label events
+    types:
+      - created # Only trigger on label creation events
+      - deleted # Only trigger on label deletion events
+      - updated # Only trigger on label update events
+  issue_comment: # Trigger the workflow on issue comment events
+    types:
+      - created # Only trigger on issue comment creation events
 
 # Jobs
-#
 jobs: # The jobs that will run as part of the workflow
   build: # The name of the job
    runs-on: ubuntu-latest # The type of runner to use
@@ -53,3 +67,7 @@ jobs: # The jobs that will run as part of the workflow
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+
+# Add backs pipeline
+# Add Triggert
+# Add hellow world job
